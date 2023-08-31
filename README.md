@@ -1,8 +1,8 @@
 # Dagger Wrapper
 
-This is a sample project that shows you how to extend the Dagger SDK to make it reusable accross other projects. It ties together a few themes that have been explored in other Dagger guides. [This Guide](https://docs.dagger.io/757394/use-service-containers#example-mariadb-database-service-for-application-tests) shows a great example of how to to run service containers using MariaDB and Drupal and [this guide](https://docs.dagger.io/sdk/python/628797/get-started/#step-4-test-against-multiple-python-versions) shows how to run matrix builds over multiple versions of Python. 
+This is a sample project that shows you how to extend the Dagger SDK to make it reusable across other projects. It ties together a few themes that have been explored in other Dagger guides. [This Guide](https://docs.dagger.io/757394/use-service-containers#example-mariadb-database-service-for-application-tests) shows a great example of how to to run service containers using MariaDB and Drupal and [this guide](https://docs.dagger.io/sdk/python/628797/get-started/#step-4-test-against-multiple-python-versions) shows how to run matrix builds over multiple versions of Python. 
 
-Imagine that you are working on a Drupal application that supports mulitple version of MariaDB. As a part of your CI process you need to run your test suite against each supported database version. The [Dagger Python SDK](https://docs.dagger.io/sdk/python/) provides us with the building blocks we need to create sidecar containers. We can use these building blocks to create an SDK wrapper that allows us to simplify our project-specific Dagger configuration and create utility functions for all other projects in your organization. 
+Imagine that you are working on a Drupal application that supports multiple version of MariaDB. As a part of your CI process you need to run your test suite against each supported database version. The [Dagger Python SDK](https://docs.dagger.io/sdk/python/) provides us with the building blocks we need to create sidecar containers. We can use these building blocks to create an SDK wrapper that allows us to simplify our project-specific Dagger configuration and create utility functions for all other projects in your organization. 
 
 ## Code Walkthrough 
 
@@ -41,7 +41,7 @@ async def get_mariadb_service(self, version=None):
     return await mariadb
 ```
 
-Last, we return a drupal sidecar container using the same appraoch as the previously referenced guide. 
+Last, we return a drupal sidecar container using the same approach as the previously referenced guide. 
 
 ```python
 async def get_drupal_service(self):
@@ -65,7 +65,7 @@ async def get_drupal_service(self):
     return await drupal
 ```
 
-With these things in place we can now publish this simple wrapper library and reuse it accross any other project that needs drupal or MariaDB. 
+With these things in place we can now publish this simple wrapper library and reuse it across any other project that needs drupal or MariaDB. 
 
 ## Wrapper in Action 
 
@@ -160,4 +160,4 @@ jobs:
 
 # Conclusion 
 
-With this simple example, we have illustrated how you can use the powerful Dagger SDK building blocks to create reusable abstractions. Like any good library, as your needs evolve and organizational complexity increases, you can benefit from having a single source of truth for how to connfigure and run your builds. Most importantly, as the needs of your project grow you can handle the complexity with clean, reusable code, rather than wrangling a thousand line YAML file. 
+With this simple example, we have illustrated how you can use the powerful Dagger SDK building blocks to create reusable abstractions. Like any good library, as your needs evolve and organizational complexity increases, you can benefit from having a single source of truth for how to configure and run your builds. Most importantly, as the needs of your project grow you can handle the complexity with clean, reusable code, rather than wrangling a thousand line YAML file. 
