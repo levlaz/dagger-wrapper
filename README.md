@@ -8,7 +8,7 @@ Imagine that you are working on a Drupal application that supports mulitple vers
 
 We start by creating a simple Python Class that is instantiated with an instance of a Dagger client. 
 
-```
+```python
 def __init__(self, client):
     """Instantiate a new DaggerWrapper object.
 
@@ -19,7 +19,7 @@ def __init__(self, client):
 
 Next, we create a utility function that returns a MariaDB container. This function allows us to specify a specific `version` of MariaDB or defaults to the latest Docker tag.
 
-```
+```python
 async def get_mariadb_service(self, version=None):
     """
     return mariadb sidecar container
@@ -43,7 +43,7 @@ async def get_mariadb_service(self, version=None):
 
 Last, we return a drupal sidecar container using the same appraoch as the previously referenced guide. 
 
-```
+```python
 async def get_drupal_service(self):
     """
     return drupal sidecar container
@@ -74,7 +74,7 @@ To really appreciate what is happening here, lets start a new project from scrat
 
 Open up a new terminal and run the following commands:
 
-```
+```bash
 # create new folder for our project 
 mkdir dagger_wrapper_demo
 
@@ -87,13 +87,13 @@ python3 -m venv venv
 
 You can install the wrapper we have been discussing using pip. 
 
-```
+```bash
 pip install git+https://github.com/levlaz/dagger-wrapper
 ```
 
 Create a new file for our Dagger configuration called `main.py` and add the following code to it:
 
-```
+```python
 from daggerwrapper.wrapper import DaggerWrapper
 import dagger 
 import anyio
