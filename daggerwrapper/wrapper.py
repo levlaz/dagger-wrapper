@@ -7,12 +7,17 @@ class DaggerWrapper():
 
     def __init__(self, client):
         """Instantiate a new DaggerWrapper object.
+
+        :param client: An instance of the Dagger client
         """
         self.client = client
+
 
     async def get_mariadb_service(self, version=None):
         """
         return mariadb sidecar container
+
+        :param version: Version of MariaDB to use, defaults to "latest"
         """
         if not version:
             version = "latest"
