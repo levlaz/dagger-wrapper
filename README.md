@@ -83,6 +83,9 @@ cd dagger_wrapper_demo
 
 # create a python virutalenv
 python3 -m venv venv 
+
+# activate the virtualenv
+source venv/bin/activate 
 ```
 
 You can install the wrapper we have been discussing using pip. 
@@ -130,6 +133,31 @@ In this code we are creating a new `wrapper` object which give us the two utilit
 
 You can see this in action by running `python main.py`. 
 
+## Running in CI 
+
+With everything working as expected locally, we can complete our journey by getting this working on CI. With the following minimal configuration you can see the same output on CircleCI that you see locally.  
+
+```yaml
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.11
+    steps:
+      - checkout
+      - run:
+          name: Install DaggerWrapper
+          command: pip install git+https://github.com/levlaz/dagger-wrapper
+
+      - setup_remote_docker:
+          version: 20.10.23
+          docker_layer_caching: true
+
+      # Run Dagger
+      - run: python main.py
+```
+
 # Conclusion 
 
-With this simple example, we have illustrated how you can use the powerful Dagger SDK building blocks to create reusable abstractions. Like any good library, as your needs evolve and organizational complexity increases, you can benefit from having a single source of truth for how to connfigure and run your builds. 
+With this simple example, we have illustrated how you can use the powerful Dagger SDK building blocks to create reusable abstractions. Like any good library, as your needs evolve and organizational complexity increases, you can benefit from having a single source of truth for how to connfigure and run your builds. Most importantly, as the needs of your project grow you can handle the complexity with clean, reusable code, rather than wrangling a thousand line YAML file. 
